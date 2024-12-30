@@ -23,13 +23,9 @@ let package = Package(
             name: "BeatsPassKeyIOS",
             dependencies: [
                 "SwiftGodot",
-                "SwiftGodotMacroLibrary" // Add the macro library here
             ],
             swiftSettings: [
                 .unsafeFlags(["-suppress-warnings"])
-            ],
-            linkerSettings: [
-                .linkedFramework("AuthenticationServices") // Add AuthorizationServices framework
             ],
             plugins: [
                 .plugin(name: "CodeGeneratorPlugin", package: "SwiftGodot"),
