@@ -17,21 +17,25 @@ let package = Package(
     ],
     dependencies: [
         .package(url: "https://github.com/migueldeicaza/SwiftGodot.git", branch: "main")
-
     ],
     targets: [
         .target(
             name: "BeatsPassKeyIOS",
             dependencies: [
-                "SwiftGodot"
+                "SwiftGodot",
+                "SwiftGodotMacroLibrary" // Add the macro library here
             ],
             swiftSettings: [
                 .unsafeFlags(["-suppress-warnings"])
             ],
-			linkerSettings: [
+            linkerSettings: [
                 .linkedFramework("AuthenticationServices") // Add AuthorizationServices framework
-            ]
-        ),	
+            ],
+            plugins: [
+                .plugin(name: "CodeGeneratorPlugin", package: "SwiftGodot"),
+                .plugin(name: "EntryPointGeneratorPlugin", package: "SwiftGodot")
+            ] // Include the required plugins
+        ),  
         .testTarget(
             name: "BeatsPassKeyIOSTests",
             dependencies: ["BeatsPassKeyIOS"]
