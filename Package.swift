@@ -22,8 +22,8 @@ let package = Package(
         .target(
             name: "BeatsPassKeyIOS",
             dependencies: [
-                "SwiftGodot", 
-                .target(name: "SwiftGodotMacroLibrary", condition: .when(platforms: [.iOS, .macOS])) // Add this dependency
+                "SwiftGodot", // Use the declared library product from SwiftGodot
+                .product(name: "SwiftGodotMacroLibrary", package: "SwiftGodot") // Refer to the product declared in SwiftGodot's Package.swift
             ],
             swiftSettings: [
                 .unsafeFlags(["-suppress-warnings"])
