@@ -23,14 +23,14 @@ let package = Package(
             name: "BeatsPassKeyIOS",
             dependencies: [
                 "SwiftGodot", // Use the declared library product from SwiftGodot
-                .product(name: "SwiftGodotMacroLibrary", package: "SwiftGodot") // Refer to the product declared in SwiftGodot's Package.swift
+                .product(name: "SwiftGodotMacroLibrary", package: "swiftgodot") // Refer to the product declared in SwiftGodot's Package.swift
             ],
             swiftSettings: [
                 .unsafeFlags(["-suppress-warnings"])
             ],
             plugins: [
-                .plugin(name: "CodeGeneratorPlugin", package: "SwiftGodot"),
-                .plugin(name: "EntryPointGeneratorPlugin", package: "SwiftGodot")
+                .plugin(name: "CodeGeneratorPlugin", package: "swiftgodot"),
+                .plugin(name: "EntryPointGeneratorPlugin", package: "swiftgodot")
             ]
         ),
         .testTarget(
