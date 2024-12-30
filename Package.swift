@@ -22,7 +22,8 @@ let package = Package(
         .target(
             name: "BeatsPassKeyIOS",
             dependencies: [
-                "SwiftGodot",
+                "SwiftGodot", 
+                .target(name: "SwiftGodotMacroLibrary", condition: .when(platforms: [.iOS, .macOS])) // Add this dependency
             ],
             swiftSettings: [
                 .unsafeFlags(["-suppress-warnings"])
@@ -30,8 +31,8 @@ let package = Package(
             plugins: [
                 .plugin(name: "CodeGeneratorPlugin", package: "SwiftGodot"),
                 .plugin(name: "EntryPointGeneratorPlugin", package: "SwiftGodot")
-            ] // Include the required plugins
-        ),  
+            ]
+        ),
         .testTarget(
             name: "BeatsPassKeyIOSTests",
             dependencies: ["BeatsPassKeyIOS"]
