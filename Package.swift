@@ -4,7 +4,7 @@ import PackageDescription
 let package = Package(
     name: "BeatsPassKeyIOS",
     platforms: [
-        .iOS(.v15),
+        .iOS(.v17),
         .macOS(.v10_15)
     ],
 
