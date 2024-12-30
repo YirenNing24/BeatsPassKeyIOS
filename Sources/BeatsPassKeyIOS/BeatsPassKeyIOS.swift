@@ -13,10 +13,10 @@ class BeatsPassKeyIOS: RefCounted {
     //try
 
     // Define signals for Godot to listen to
-    #signal("sign_in_passkey_completed", arguments: ["responseJson": String.self])
-    #signal("sign_in_passkey_error", arguments: ["errorMessage": String.self])
-    #signal("create_passkey_completed", arguments: ["responseJson": String.self])
-    #signal("create_passkey_error", arguments: ["errorMessage": String.self])
+    // #signal("sign_in_passkey_completed", arguments: ["responseJson": String.self])
+    // #signal("sign_in_passkey_error", arguments: ["errorMessage": String.self])
+    // #signal("create_passkey_completed", arguments: ["responseJson": String.self])
+    // #signal("create_passkey_error", arguments: ["errorMessage": String.self])
 
     // @Callable
     // func initiateSignInWithPasskey(requestJson: String) -> Void {
@@ -40,27 +40,27 @@ class BeatsPassKeyIOS: RefCounted {
     //     }
     // }
 
-    @Callable
-    func createPasskey(requestJson: String) -> Void {
-        guard let requestData = requestJson.data(using: .utf8) else {
-            emit(signal: BeatsPassKeyIOS.create_passkey_error, "Invalid JSON data")
-            return
-        }
+    // @Callable
+    // func createPasskey(requestJson: String) -> Void {
+    //     guard let requestData = requestJson.data(using: .utf8) else {
+    //         emit(signal: BeatsPassKeyIOS.create_passkey_error, "Invalid JSON data")
+    //         return
+    //     }
 
-        do {
-            let descriptor = try JSONDecoder().decode(ASAuthorizationPlatformPublicKeyCredentialDescriptor.self, from: requestData)
+    //     do {
+    //         let descriptor = try JSONDecoder().decode(ASAuthorizationPlatformPublicKeyCredentialDescriptor.self, from: requestData)
 
-            let registrationRequest = ASAuthorizationPlatformPublicKeyCredentialProvider().createCredentialRegistrationRequest(descriptor: descriptor)
+    //         let registrationRequest = ASAuthorizationPlatformPublicKeyCredentialProvider().createCredentialRegistrationRequest(descriptor: descriptor)
 
-            self.authorizationController = ASAuthorizationController(authorizationRequests: [registrationRequest])
-            self.authorizationController?.delegate = self
-            self.authorizationController?.presentationContextProvider = self
-            self.authorizationController?.performRequests()
+    //         self.authorizationController = ASAuthorizationController(authorizationRequests: [registrationRequest])
+    //         self.authorizationController?.delegate = self
+    //         self.authorizationController?.presentationContextProvider = self
+    //         self.authorizationController?.performRequests()
 
-        } catch {
-            emit(signal: BeatsPassKeyIOS.create_passkey_error, "Failed to parse request JSON")
-        }
-    }
+    //     } catch {
+    //         emit(signal: BeatsPassKeyIOS.create_passkey_error, "Failed to parse request JSON")
+    //     }
+    // }
 }
 
 // // MARK: - ASAuthorizationControllerDelegate
