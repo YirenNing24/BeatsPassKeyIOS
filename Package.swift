@@ -5,8 +5,9 @@ let package = Package(
     name: "BeatsPassKeyIOS",
     platforms: [
         .iOS(.v15),
-        .macOS(.v10)
+        .macOS(.v10_15)
     ],
+
     products: [
         .library(
             name: "BeatsPassKeyIOS",
