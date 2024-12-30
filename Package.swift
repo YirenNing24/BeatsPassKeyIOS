@@ -1,4 +1,4 @@
-// swift-tools-version: 5.9.0
+// swift-tools-version: 5.10
 // The swift-tools-version declares the minimum version of Swift required to build this package.
 
 import PackageDescription
@@ -6,7 +6,8 @@ import PackageDescription
 let package = Package(
 	name: "BeatsPassKeyIOS",
 	platforms: [
-		.iOS(.v15) // Specify the minimum iOS version
+		.iOS(.v15), // Specify the minimum iOS version
+    
 	],
 	products: [
 		.library(
@@ -16,7 +17,7 @@ let package = Package(
 		),
 	],
 	dependencies: [
-		.package(url: "https://github.com/migueldeicaza/SwiftGodotKit.git", branch: "main")
+		.package(url: "https://github.com/migueldeicaza/SwiftGodot.git", branch: "main")
 	],
 	targets: [
 		.target(
