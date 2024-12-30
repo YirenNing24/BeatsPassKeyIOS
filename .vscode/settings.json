@@ -22,7 +22,5 @@
     },
     "godotTools.editorPath.godot4": "/home/paulanthonyarriola/Desktop/Godot_v4.3-stable_linux.x86_64",
     "swift.swiftEnvironmentVariables": {},
-    "lldb.library": "/Library/Developer/CommandLineTools/Library/PrivateFrameworks/LLDB.framework/Versions/A/LLDB",
-    "lldb.launch.expressions": "native",
     "sweetpad.build.xcodeWorkspacePath": ".swiftpm/xcode/package.xcworkspace"
 }
