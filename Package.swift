@@ -1,11 +1,11 @@
-// swift-tools-version: 5.10
-
+// swift-tools-version: 6.0
 import PackageDescription
 
 let package = Package(
     name: "BeatsPassKeyIOS",
     platforms: [
-        .iOS(.v15)
+        .iOS(.v15),
+        .macOS(.v10)
     ],
     products: [
         .library(
