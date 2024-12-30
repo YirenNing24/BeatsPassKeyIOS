@@ -21,8 +21,5 @@
         "editor.formatOnSave": true
     },
     "godotTools.editorPath.godot4": "/home/paulanthonyarriola/Desktop/Godot_v4.3-stable_linux.x86_64",
-    "swift.path": "/Users/paulskie/Downloads/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin",
-    "swift.swiftEnvironmentVariables": {
-        "DEVELOPER_DIR": "/Users/paulskie/Downloads/Xcode.app"
-    }
+    "swift.swiftEnvironmentVariables": {}
 }

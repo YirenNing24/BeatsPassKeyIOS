@@ -16,6 +16,7 @@ let package = Package(
     ],
     dependencies: [
         .package(url: "https://github.com/migueldeicaza/SwiftGodot.git", branch: "main")
+
     ],
     targets: [
         .target(
@@ -25,8 +26,11 @@ let package = Package(
             ],
             swiftSettings: [
                 .unsafeFlags(["-suppress-warnings"])
+            ],
+			linkerSettings: [
+                .linkedFramework("AuthenticationServices") // Add AuthorizationServices framework
             ]
-        ),
+        ),	
         .testTarget(
             name: "BeatsPassKeyIOSTests",
             dependencies: ["BeatsPassKeyIOS"]
