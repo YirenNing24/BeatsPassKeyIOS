@@ -11,15 +11,16 @@ class BeatsPassKeyIOS: RefCounted {
 
     private var authorizationController: ASAuthorizationController?
 
-    @Callable
-    func hello() -> Void {
-        print("hey!")
-    }
+    // Define signals for Godot to listen to
+    #signal("sign_in_passkey_completed", arguments: ["responseJson": String.self])
+    #signal("sign_in_passkey_error", arguments: ["errorMessage": String.self])
+    #signal("create_passkey_completed", arguments: ["responseJson": String.self])
+    #signal("create_passkey_error", arguments: ["errorMessage": String.self])
 
     @Callable
     func initiateSignInWithPasskey(requestJson: String) -> Void {
         guard let requestData = requestJson.data(using: .utf8) else {
-            emitSignal("sign_in_passkey_error", ["Invalid JSON data"])
+            emit(signal: BeatsPassKeyIOS.sign_in_passkey_error, "Invalid JSON data")
             return
         }
 
@@ -34,14 +35,14 @@ class BeatsPassKeyIOS: RefCounted {
             self.authorizationController?.performRequests()
 
         } catch {
-            emitSignal("sign_in_passkey_error", ["Failed to parse request JSON"])
+            emit(signal: BeatsPassKeyIOS.sign_in_passkey_error, "Failed to parse request JSON")
         }
     }
 
     @Callable
     func createPasskey(requestJson: String) -> Void {
         guard let requestData = requestJson.data(using: .utf8) else {
-            emitSignal("create_passkey_error", ["Invalid JSON data"])
+            emit(signal: BeatsPassKeyIOS.create_passkey_error, "Invalid JSON data")
             return
         }
 
@@ -56,7 +57,7 @@ class BeatsPassKeyIOS: RefCounted {
             self.authorizationController?.performRequests()
 
         } catch {
-            emitSignal("create_passkey_error", ["Failed to parse request JSON"])
+            emit(signal: BeatsPassKeyIOS.create_passkey_error, "Failed to parse request JSON")
         }
     }
 }
@@ -67,17 +68,17 @@ extension BeatsPassKeyIOS: ASAuthorizationControllerDelegate {
         if let credential = authorization.credential as? ASAuthorizationPlatformPublicKeyCredential {
             if let credentialData = credential.rawCredential,
                let responseJson = String(data: credentialData, encoding: .utf8) {
-                emitSignal("sign_in_passkey_completed", [responseJson])
+                emit(signal: BeatsPassKeyIOS.sign_in_passkey_completed, responseJson)
             } else {
-                emitSignal("sign_in_passkey_error", ["Failed to decode credential data"])
+                emit(signal: BeatsPassKeyIOS.sign_in_passkey_error, "Failed to decode credential data")
             }
         } else {
-            emitSignal("sign_in_passkey_error", ["Unexpected credential type"])
+            emit(signal: BeatsPassKeyIOS.sign_in_passkey_error, "Unexpected credential type")
         }
     }
 
     func authorizationController(controller: ASAuthorizationController, didCompleteWithError error: Error) {
-        emitSignal("sign_in_passkey_error", [error.localizedDescription])
+        emit(signal: BeatsPassKeyIOS.sign_in_passkey_error, error.localizedDescription)
     }
 }
 
