@@ -10,6 +10,7 @@ import AuthenticationServices
 class BeatsPassKeyIOS: RefCounted {
 
     private var authorizationController: ASAuthorizationController?
+    //try
 
     // Define signals for Godot to listen to
     #signal("sign_in_passkey_completed", arguments: ["responseJson": String.self])
